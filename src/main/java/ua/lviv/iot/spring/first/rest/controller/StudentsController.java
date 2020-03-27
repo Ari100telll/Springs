@@ -46,11 +46,8 @@ public class StudentsController {
 
   @PostMapping(produces = { MediaType.APPLICATION_JSON_VALUE, "application/x-yaml" })
   public Student createStudent(final @RequestBody Student student) {
-    
-
-    System.out.println(studentService.createStudent(student));
-    
     student.setId(idCounter.incrementAndGet());
+    System.out.println(studentService.createStudent(student));
     students.put(student.getId(), student);
     return student;
   }
