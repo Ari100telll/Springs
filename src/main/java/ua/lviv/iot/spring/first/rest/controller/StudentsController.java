@@ -33,7 +33,6 @@ public class StudentsController {
   @Autowired
   private StudentService studentService;
   @GetMapping
-  
   public List<Student> getStudents() {
     return new LinkedList<Student>(students.values());
   }
