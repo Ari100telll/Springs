@@ -11,14 +11,18 @@ import ua.lviv.iot.spring.first.rest.model.Student;
 @Service
 public class StudentService {
 
-    @Autowired
-    private StudentRepository studentRepository;
-    
-    public Student createStudent(Student student) {
-        return studentRepository.save(student);
-    }
-    
-    public List<Student> findAll() {
-        return studentRepository.findAll();
-    }
+  @Autowired
+  private StudentRepository studentRepository;
+
+  public Student createStudent(Student student) {
+    return studentRepository.save(student);
+  }
+
+  public List<Student> findAll() {
+    return studentRepository.findAll();
+  }
+
+  public List<Student> getAllByName(String firstName) {
+    return studentRepository.findAllByFirstName(firstName);
+  }
 }

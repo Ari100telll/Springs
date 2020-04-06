@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ua.lviv.iot.spring.first.business.StudentService;
@@ -32,11 +33,17 @@ public class StudentsController {
   
   @Autowired
   private StudentService studentService;
+  
+  
   @GetMapping
-  public List<Student> getStudents() {
+  public List<Student> getStudents(@RequestParam(name = "firstName",required = false) String firstName) {
+    if(firstName == null) {
     return new LinkedList<Student>(students.values());
+   }
+    else {
+      return studentService.getAllByName(firstName);
+    }
   }
-
   @GetMapping(path = "/{id}")
   public Student getStudent(final @PathVariable("id") Integer studentID) {
     System.out.println(studentID);
